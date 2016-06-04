@@ -33,7 +33,7 @@ def search_data():
 
 def name_search():
     search = input("Enter a Players name to search: ")
-    cursor.execute("select * from football_stat where full_name = %s;", (search, ))
+    cursor.execute("select * from quarterback_stat where full_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
     search_data()
@@ -41,26 +41,26 @@ def name_search():
 
 def team_search():
     search = input("Enter a team name to search, eg. SEA, GB, PIT...: ")
-    cursor.execute("select * from football_stat where team_name = %s;", (search, ))
+    cursor.execute("select * from quarterback_stat where team_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
     search_data()
 
 
 def complete_search():
-    cursor.execute("select full_name, complete from football_stat order by complete DESC ;")
+    cursor.execute("select full_name, complete from quarterback_stat order by complete DESC ;")
     result = cursor.fetchall()
     print(result)
     search_data()
 
 def attempt_search():
-    cursor.execute("select full_name, attempt from football_stat order by attempt DESC ;")
+    cursor.execute("select full_name, attempt from quarterback_stat order by attempt DESC ;")
     result = cursor.fetchall()
     print(result)
     search_data()
 
 def att_pct_search():
-    cursor.execute("select full_name, att_pct from football_stat order by att_pct DESC ;")
+    cursor.execute("select full_name, att_pct from quarterback_stat order by att_pct DESC ;")
     result = cursor.fetchall()
     print(result)
     search_data()
@@ -72,19 +72,19 @@ def add_data():
     attempt = input("Enter the number of attempted passes as a number, example, 180: ")
     att_pct = input("Enter the number percentage of complete to attempts as a round number, ie 35: ")
 
-    cursor.execute("INSERT INTO football_stat VALUES(%s, %s, %s, %s, %s );" , (full_name, team_name, complete, attempt, att_pct))
+    cursor.execute("INSERT INTO quarterback_stat VALUES(%s, %s, %s, %s, %s );" , (full_name, team_name, complete, attempt, att_pct))
     connection.commit()
 
 
     print("Your Player data has been added to the database.")
-    cursor.execute(" SELECT * FROM football_stat")
+    cursor.execute(" SELECT * FROM quarterback_stat")
     results = cursor.fetchall()
     for row in results:
         print(row)
 
 
 #cursor.close()
-# connection.close()
+#connection.close()
 
 
 welcome()
