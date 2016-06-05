@@ -6,14 +6,14 @@ cursor = connection.cursor()
 
 def welcome():
     welcome = input("Welcome to the NFL 2015 Top quarterback data base.\n"
-                    "You can (S)earch or (A)dd information to the database?").lower()
+                    "You can (S)earch or you can (A)dd information to the database,\n choose (Q) to quit: ").lower()
 
     if welcome == "s":
         search_data()
-    else:
+    elif welcome == "a":
         add_data()
-
-
+    elif welcome == "q":
+        exit()
 
 
 def search_data():
@@ -26,10 +26,13 @@ def search_data():
         complete_search()
     elif search == "a":
         attempt_search()
+    elif search == "p":
+        att_pct_search()
+        search_data()
     else:
-        if search == "p":
-            att_pct_search()
-            search_data()
+        print("The data base is currently capable of searching the given parameters")
+        welcome()
+
 
 def name_search():
     search = input("Enter a Players name to search: ")
@@ -53,17 +56,20 @@ def complete_search():
     print(result)
     search_data()
 
+
 def attempt_search():
     cursor.execute("select full_name, attempt from quarterback_stat order by attempt DESC ;")
     result = cursor.fetchall()
     print(result)
     search_data()
 
+
 def att_pct_search():
     cursor.execute("select full_name, att_pct from quarterback_stat order by att_pct DESC ;")
     result = cursor.fetchall()
     print(result)
     search_data()
+
 
 def add_data():
     full_name = input("Enter the player's name: ")
@@ -79,8 +85,10 @@ def add_data():
     print("Your Player data has been added to the database.")
     cursor.execute(" SELECT * FROM quarterback_stat")
     results = cursor.fetchall()
-    for row in results:
-        print(row)
+    for results in results:
+        print(results)
+        welcome()
+
 
 
 #cursor.close()
