@@ -6,7 +6,7 @@ cursor = connection.cursor()
 
 def welcome():
     welcome = input("Welcome to the NFL 2015 Top quarterback data base.\n"
-                    "You can (S)earch or you can (A)dd information to the database,\n choose (Q) to quit: ").lower()
+                    "You can (S)earch or you can (A)dd information to the database,choose (Q) to quit: ").lower()
 
     if welcome == "s":
         search_data()
@@ -83,14 +83,11 @@ def add_data():
     cursor.execute("INSERT INTO quarterback_stat VALUES(%s, %s, %s, %s, %s );" , (full_name, team_name, complete, attempt, att_pct))
     connection.commit()
 
-
     print("Your Player data has been added to the database.")
-    cursor.execute(" SELECT * FROM quarterback_stat")
-    results = cursor.fetchall()
-    for line in results:
-        print(line)
 
-        welcome()
+    print("Search your Player by entering Full name in search !!!")
+
+    welcome()
 
 
 
