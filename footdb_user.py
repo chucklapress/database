@@ -13,7 +13,9 @@ def welcome():
     elif welcome == "a":
         add_data()
     elif welcome == "q":
-        exit()
+         cursor.close()
+         connection.close()
+         exit()
 
 
 def search_data():
@@ -30,16 +32,16 @@ def search_data():
         att_pct_search()
         search_data()
     else:
-        print("The data base is currently capable of searching the given parameters")
+        print("The data base is currently only capable of searching the given parameters")
         welcome()
 
 
 def name_search():
-    search = input("Enter a Players name to search: ")
+    search = input("Enter a Players name to search, eg.Peyton Manning.. ")
     cursor.execute("select * from quarterback_stat where full_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
-    search_data()
+    welcome()
 
 
 def team_search():
@@ -47,28 +49,28 @@ def team_search():
     cursor.execute("select * from quarterback_stat where team_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
-    search_data()
+    welcome()
 
 
 def complete_search():
     cursor.execute("select full_name, complete from quarterback_stat order by complete DESC ;")
     result = cursor.fetchall()
     print(result)
-    search_data()
+    welcome()
 
 
 def attempt_search():
     cursor.execute("select full_name, attempt from quarterback_stat order by attempt DESC ;")
     result = cursor.fetchall()
     print(result)
-    search_data()
+    welcome()
 
 
 def att_pct_search():
     cursor.execute("select full_name, att_pct from quarterback_stat order by att_pct DESC ;")
     result = cursor.fetchall()
     print(result)
-    search_data()
+    welcome()
 
 
 def add_data():
@@ -85,21 +87,12 @@ def add_data():
     print("Your Player data has been added to the database.")
     cursor.execute(" SELECT * FROM quarterback_stat")
     results = cursor.fetchall()
-    for results in results:
-        print(results)
+    for line in results:
+        print(line)
+
         welcome()
 
 
 
-#cursor.close()
-#connection.close()
-
 
 welcome()
-search_data()
-add_data()
-name_search()
-team_search()
-complete_search()
-attempt_search()
-att_pct_search()
