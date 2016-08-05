@@ -31,35 +31,35 @@ def player_name_search():
     cursor.execute("select * from quarterback_stat where full_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
-    welcome
+    welcome()
 
 def team_search():
     search = input('Enter a teams abbrevation to see a players listing ')
     cursor.execute("select * from quarterback_stat where team_name = %s;", (search, ))
     result = cursor.fetchall()
     print(result)
-    welcome
+    welcome()
 
 def completion_search():
     search = input('press enter for a grouping of players and completion numbers')
     cursor.execute("select full_name, complete from quarterback_stat order by complete;",(search))
     result = cursor.fetchall()
     print(result)
-    welcome
+    welcome()
 
 def attempt_search():
     search = input('press enter for a grouping of players attempted pass numbers')
     cursor.execute("select full_name, attempt from quarterback_stat order by attempt;",(search))
     result = cursor.fetchall()
     print(result)
-    welcome
+    welcome()
 
 def attempt_percentage_search():
     search = input('press enter for a grouping of players attempt completion percentage')
     cursor.execute("select full_name, att_pct from quarterback_stat order by att_pct;",(search))
     result = cursor.fetchall()
     print(result)
-    welcome
+    welcome()
 
 def add_player():
     print('Please enter the following information to add a player to the database')
@@ -72,12 +72,12 @@ def add_player():
     cursor.execute("INSERT INTO quarterback_stat VALUES(%s, %s, %s, %s, %s );" , (full_name, team_name, complete, attempt, att_pct))
     connection.commit()
     print('your player has been added to the database')
-    welcome
+    welcome()
 
 def end_program():
     cursor.close()
     connection.close()
-    exit()
+    quit()
 
 
 
