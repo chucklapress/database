@@ -5,13 +5,14 @@ cursor = connection.cursor()
 
 
 def welcome():
-    welcome = input("Welcome to the NFL 2015 Top quarterback data base.\n"
-                    "You can (S)earch or you can (A)dd information to the database,choose (Q) to quit: ").lower()
+    welcome = input("You can (S)earch or you can (A)dd information to the database,choose (Q) to quit: ").lower()
 
     if welcome == "s":
         search_data()
     elif welcome == "a":
         add_data()
+    elif welcome == "all":
+        all_info()
     elif welcome == "q":
          cursor.close()
          connection.close()
@@ -34,6 +35,14 @@ def search_data():
     else:
         print("The data base is currently only capable of searching the given parameters")
         welcome()
+
+def all_info():
+    search = input('Need the info')
+    cursor.execute("select * from quarterback_stat ;",(search, ))
+    result = cursor.fetchall()
+    print(result)
+    welcome()
+
 
 
 def name_search():
