@@ -25,7 +25,7 @@ cursor.execute("INSERT INTO smoking_pipes VALUES('Jonas Rosengren', 'SWE', 1000,
 cursor.execute("INSERT INTO smoking_pipes VALUES('Konstantin Shekita', 'UKR', 2000, 'scandpipes', 2);")
 cursor.execute("INSERT INTO smoking_pipes VALUES('Alex Florov', 'USA', 1800, 'smoking pipes', 1);")
 cursor.execute("INSERT INTO smoking_pipes VALUES('Minoru Nagata', 'JPN', 600, 'scandpipes', 2);")
-cursor.execute("INSERT INTO smoking_pipes VALUES('Scott Klein', 'USA', 1000, 'smaoking pipes', 1);")
+cursor.execute("INSERT INTO smoking_pipes VALUES('Scott Klein', 'USA', 1000, 'smoking pipes', 1);")
 cursor.execute("INSERT INTO smoking_pipes VALUES('Stanislav Kamensky', 'RUS', 1300, 'scandpipes', 2);")
 cursor.execute("INSERT INTO smoking_pipes VALUES (%s, %s, %s, %s, %s);" ,(maker_name, maker_country, cost, vendor_name, vendor_number))
 connection.commit()
